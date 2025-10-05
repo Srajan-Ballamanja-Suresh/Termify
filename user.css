@@ -169,6 +169,8 @@ button {
   width: 20px;
 }
 
+/*taken from chatgpt (doesnt) work wanted to make the knob on the progressbar white */
+/*instead of the black it takes from the spotify background*/
 /* Progress Bar Slider Knob */
 .x-progressBar-sliderHandle {
     width: 12px !important; /* Smaller size for the knob */
