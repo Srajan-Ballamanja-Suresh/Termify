@@ -139,15 +139,75 @@ button {
 }
 
 /* Progress bar */
-.x-progressBar-progressBarBg,
-.x-progressBar-sliderArea {
-	border-radius: 0px !important;
-	border: 1px dotted var(--spice-text) !important;
-	background-color: var(--spice-player) !important;
+.main-nowPlayingBar-center .playback-progressbar {
+  position: absolute;
+  left: 0;
+  bottom: 84px;
+}
+.main-nowPlayingBar-nowPlayingBar:not(:only-child) .playback-progressbar {
+  bottom: 108px;
+}
+.playback-bar .progress-bar {
+  --progress-bar-radius: 0;
+}
+.playback-bar:hover .progress-bar,
+.playback-bar .DuvrswZugGajIFNXObAr {
+  --progress-bar-height: 8px;
+}
+.x-progressBar-progressBarBg {
+  background-color: var(--spice-player);
+}
+.progress-bar__slider {
+  display: block;
+  background-color: var(--spice-shadow);
+  border: 2px solid var(--bar);
+  height: 16px;
+  width: 16px;
+}
+.playback-bar .progress-bar__slider {
+  height: 20px;
+  width: 20px;
 }
 
-.progress-bar {
-	--progress-bar-radius: 0px !important;
+/* Progress Bar Slider Knob */
+.x-progressBar-sliderHandle {
+    width: 12px !important; /* Smaller size for the knob */
+    height: 12px !important; /* Adjust height to match width */
+    background-color: white !important; /* Set the knob color to white */
+    border-radius: 50% !important; /* Make it a perfect circle */
+    border: 2px solid var(--spice-text) !important; /* Optional: Add a border around the knob */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important; /* Optional: Add a subtle shadow for better visibility */
+}
+
+.x-progressBar-sliderHandle:active {
+    background-color: white !important; /* Maintain the white color on drag */
+    transform: scale(1.1) !important; /* Optional: Slightly enlarge the knob when it's being dragged */
+}
+
+/* Left Section: Song Name and Time Elapsed */
+.now-playing-info {
+    display: flex;
+    align-items: center;
+}
+
+/* Time Elapsed (Right of Song Name) */
+.playback-bar__progress-time-elapsed {
+    color: var(--spice-subtext) !important;
+    margin-left: 12px; /* Space between song name and time elapsed */
+    font-size: 12px; /* Adjust font size as needed */
+}
+
+/* Right Section: Time Remaining and Controls */
+.right-section {
+    display: flex;
+    align-items: center; /* Vertically align the controls */
+}
+
+/* Time Remaining (Before Controls) */
+.main-playbackBarRemainingTime-container {
+    color: var(--spice-subtext) !important;
+    margin-right: 12px; /* Space before the icons (controls) */
+    font-size: 12px; /* Adjust font size as needed */
 }
 
 /* Toggles */
@@ -171,58 +231,5 @@ button {
 	background-color: var(--spice-main) !important;
 }
 
-/* Add animated scanlines */
-@keyframes scanline {
-	0% {
-		transform: translateY(-100%);
-	}
-	100% {
-		transform: translateY(100%);
-	}
-}
 
-body::before {
-	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 200%;
-	background: repeating-linear-gradient(
-		0deg,
-		rgba(0, 0, 0, 0.15),
-		rgba(0, 0, 0, 0.15) 1px,
-		transparent 1px,
-		transparent 2px
-	);
-	pointer-events: none;
-	z-index: 9999;
-	will-change: transform;
-	animation: scanline 8s linear infinite;
-}
 
-/* Add noise effect */
-body::after {
-	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-	opacity: 0.1;
-	pointer-events: none;
-	z-index: 9998;
-}
-
-/* Add CRT screen effect */
-.main-view-container {
-	background: radial-gradient(
-		circle at center,
-		color-mix(in srgb, var(--spice-text) 4%, transparent) 0%,
-		color-mix(in srgb, var(--spice-text) 2%, transparent) 30%,
-		color-mix(in srgb, var(--spice-text) 1%, transparent) 60%,
-		color-mix(in srgb, var(--spice-text) 0.5%, transparent) 85%,
-		rgba(0, 0, 0, 0.98) 100%
-	) !important;
-}
